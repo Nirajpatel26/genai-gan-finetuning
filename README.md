@@ -1,6 +1,6 @@
-# 🧠 GAN Fine-Tuning — GenAI Course (Spring 2026)
+# 🧠 GAN Fine-Tuning
 
-> **Northeastern University | Professor Das | Spring 2026**  
+  
 > Module: Generative Adversarial Networks — from Dense GANs to DCGANs
 
 ---
