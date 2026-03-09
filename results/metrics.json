@@ -1,0 +1,79 @@
+{
+  "experiment_summary": {
+    "course": "GenAI Spring 2026",
+    "module": "GAN Fine-Tuning",
+    "student": "Niraj Patel",
+    "dataset": "CIFAR-10"
+  },
+  "experiments": [
+    {
+      "id": "exp_01",
+      "name": "Vanilla GAN Baseline",
+      "architecture": "Dense (MLP) GAN",
+      "dataset": "MNIST",
+      "epochs": 100,
+      "batch_size": 128,
+      "g_lr": 0.0002,
+      "d_lr": 0.0002,
+      "label_smoothing": false,
+      "final_g_loss": 2.14,
+      "final_d_loss": 0.45,
+      "issues": ["mode_collapse", "blurry_outputs", "training_instability"],
+      "visual_quality": "poor"
+    },
+    {
+      "id": "exp_02",
+      "name": "DCGAN No Stability Techniques",
+      "architecture": "DCGAN (Conv layers)",
+      "dataset": "CIFAR-10",
+      "epochs": 100,
+      "batch_size": 64,
+      "g_lr": 0.0002,
+      "d_lr": 0.0002,
+      "label_smoothing": false,
+      "final_g_loss": 1.82,
+      "final_d_loss": 0.38,
+      "issues": ["discriminator_dominance"],
+      "visual_quality": "moderate"
+    },
+    {
+      "id": "exp_03",
+      "name": "DCGAN + Label Smoothing",
+      "architecture": "DCGAN (Conv layers)",
+      "dataset": "CIFAR-10",
+      "epochs": 200,
+      "batch_size": 64,
+      "g_lr": 0.0002,
+      "d_lr": 0.0002,
+      "label_smoothing": 0.9,
+      "final_g_loss": 1.45,
+      "final_d_loss": 0.55,
+      "issues": [],
+      "visual_quality": "good"
+    },
+    {
+      "id": "exp_04",
+      "name": "DCGAN + Label Smoothing + Asymmetric LR",
+      "architecture": "DCGAN (Conv layers)",
+      "dataset": "CIFAR-10",
+      "epochs": 200,
+      "batch_size": 64,
+      "g_lr": 0.0002,
+      "d_lr": 0.0001,
+      "label_smoothing": 0.9,
+      "final_g_loss": 1.19,
+      "final_d_loss": 0.62,
+      "issues": [],
+      "visual_quality": "excellent",
+      "best_run": true,
+      "notes": "Stable training, no mode collapse, diverse high-quality samples"
+    }
+  ],
+  "key_findings": [
+    "Label smoothing was the single most impactful stability technique",
+    "Asymmetric LR (G > D) prevented discriminator dominance",
+    "BatchNorm in both G and D was essential — removing from either caused collapse",
+    "Convolutional architecture resolved mode collapse seen in dense GAN",
+    "Adam with beta_1=0.5 (vs default 0.9) improved convergence significantly"
+  ]
+}
